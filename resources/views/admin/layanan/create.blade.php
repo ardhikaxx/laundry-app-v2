@@ -55,6 +55,19 @@
                     <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Deskripsi</label>
                     <textarea name="deskripsi" rows="3" class="form-control border-0 bg-light rounded-3 p-3 fw-bold" placeholder="Detail layanan...">{{ old('deskripsi') }}</textarea>
                 </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Status</label>
+                    <div class="d-flex gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_active" id="active1" value="1" checked>
+                            <label class="form-check-label fw-bold small" for="active1">Aktif</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_active" id="active0" value="0">
+                            <label class="form-check-label fw-bold small" for="active0">Nonaktif</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end gap-2">
                     <a href="{{ route('admin.layanan.index') }}" class="btn btn-light rounded-3 px-4 fw-bold small text-uppercase">Batal</a>
                     <button type="submit" class="btn btn-primary rounded-3 px-4 fw-black small text-uppercase shadow-sm">Simpan Data</button>
