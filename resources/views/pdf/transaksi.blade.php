@@ -98,6 +98,6 @@
 
 <div style="margin-top:40px; font-size:11px; text-align: center;">
     <p><em>Harap membawa nota ini saat pengambilan cucian.</em></p>
-    <p>Terima kasih atas kepercayaan Anda menggunakan layanan <strong>SiLaundry</strong>.</p>
+    <p>Terima kasih atas kepercayaan Anda menggunakan layanan <strong>Cuciin</strong>.</p>
 </div>
 @endsection
