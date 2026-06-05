@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') — SiLaundry Admin</title>
+    <title>@yield('title', 'Dashboard') — Cuciin Admin</title>
 
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -123,7 +123,7 @@
 <nav id="sidebar">
     <div class="brand">
         <i class="fas fa-soap text-primary me-2 fs-5"></i>
-        <span>SiLaundry</span>
+        <span>Cuciin</span>
     </div>
     <div class="pt-2 pb-3">
         <p class="nav-section">Utama</p>
