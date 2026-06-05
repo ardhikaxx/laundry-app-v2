@@ -4,115 +4,117 @@
 @section('content')
 <!-- Search Header -->
 <div class="relative overflow-hidden bg-slate-900 py-24 lg:py-32">
-    <div class="absolute inset-0 z-0 opacity-20">
-        <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-600 blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 h-64 w-64 bg-blue-500 blur-3xl opacity-30"></div>
+    <!-- Premium Decor -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[50%] -left-[10%] h-[150%] w-[50%] rounded-full bg-indigo-600 opacity-20 blur-[120px]"></div>
+        <div class="absolute -bottom-[50%] -right-[10%] h-[150%] w-[50%] rounded-full bg-purple-600 opacity-20 blur-[120px]"></div>
     </div>
     
     <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Cek Status Cucian</h1>
-        <p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto">
-            Masukkan Nama, Kode Pelanggan, atau Nomor Telepon Anda untuk melacak progress cucian secara real-time.
+        <h2 class="text-xs font-black uppercase tracking-[0.4em] text-indigo-400 mb-6">Real-time Tracking</h2>
+        <h1 class="text-5xl font-black tracking-tighter text-white sm:text-6xl">Lacak Pesanan Anda</h1>
+        <p class="mt-8 text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+            Pantau progress cucian Anda secara langsung hanya dengan Nama, Kode Pelanggan, atau Nomor Telepon.
         </p>
         
-        <div class="mt-12 mx-auto max-w-2xl">
+        <div class="mt-16 mx-auto max-w-2xl">
             <form action="{{ route('public.pelanggan') }}" method="GET" class="relative group">
-                <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <i class="fas fa-search text-slate-400 group-focus-within:text-blue-500 transition-colors"></i>
+                <div class="absolute inset-y-0 left-0 pl-7 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-slate-500 group-focus-within:text-indigo-400 transition-colors"></i>
                 </div>
                 <input type="text" name="cari" 
-                       class="block w-full rounded-2xl border-0 bg-white/10 py-5 pl-14 pr-32 text-white placeholder-slate-500 ring-1 ring-inset ring-white/20 focus:bg-white focus:text-slate-900 focus:placeholder-slate-400 focus:ring-2 focus:ring-blue-500 transition-all text-lg shadow-2xl" 
+                       class="block w-full rounded-[2rem] border-0 bg-white/5 py-7 pl-16 pr-40 text-white placeholder-slate-500 ring-1 ring-inset ring-white/10 focus:bg-white focus:text-slate-900 focus:placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 transition-all text-lg shadow-2xl backdrop-blur-md" 
                        placeholder="Contoh: PLG-2026... atau 0812..." 
                        value="{{ request('cari') }}" 
                        required>
-                <div class="absolute inset-y-2 right-2 flex items-center">
-                    <button type="submit" class="h-full rounded-xl bg-blue-600 px-8 text-sm font-bold text-white transition-all hover:bg-blue-700 active:scale-95 shadow-lg shadow-blue-500/20">
-                        Cari Data
+                <div class="absolute inset-y-2.5 right-2.5 flex items-center">
+                    <button type="submit" class="h-full rounded-[1.5rem] bg-indigo-600 px-10 text-sm font-black uppercase tracking-widest text-white transition-all hover:bg-indigo-700 active:scale-95 shadow-xl shadow-indigo-600/20">
+                        Search
                     </button>
                 </div>
             </form>
             
-            <div class="mt-6 flex flex-wrap justify-center gap-4 text-xs font-medium text-slate-500">
-                <div class="flex items-center gap-1.5">
-                    <i class="fas fa-shield-alt text-blue-500"></i>
-                    Pencarian Aman
+            <div class="mt-8 flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                <div class="flex items-center gap-3">
+                    <div class="h-1.5 w-1.5 rounded-full bg-indigo-500"></div>
+                    Secure Data access
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <i class="fas fa-bolt text-yellow-500"></i>
-                    Update Real-time
+                <div class="flex items-center gap-3">
+                    <div class="h-1.5 w-1.5 rounded-full bg-purple-500"></div>
+                    Instant Updates
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 min-h-[400px]">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 min-h-[400px]">
     @if(request('cari'))
         @if($pelanggans->count() > 0)
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($pelanggans as $pelanggan)
-                <div class="group relative flex flex-col rounded-[2rem] border border-slate-200 bg-white p-8 transition-all hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-50">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-2xl font-black text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <div class="group relative flex flex-col rounded-[3rem] border border-slate-200 bg-white p-10 transition-all duration-500 hover:border-indigo-100 hover:shadow-2xl hover:shadow-slate-200/50">
+                    <div class="flex items-center gap-6 mb-10">
+                        <div class="flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-indigo-50 text-3xl font-black text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500 group-hover:rotate-[5deg]">
                             {{ substr($pelanggan->nama_pelanggan, 0, 1) }}
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-slate-900">{{ $pelanggan->nama_pelanggan }}</h3>
-                            <p class="text-sm font-medium text-slate-400">{{ $pelanggan->kode_pelanggan }}</p>
+                            <h3 class="text-2xl font-black text-slate-900 tracking-tight">{{ $pelanggan->nama_pelanggan }}</h3>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">{{ $pelanggan->kode_pelanggan }}</p>
                         </div>
                     </div>
                     
-                    <div class="space-y-4 rounded-2xl bg-slate-50 p-6 mb-8">
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="text-slate-500 font-medium">No. Telepon</span>
-                            <span class="text-slate-900 font-bold tracking-tight">
+                    <div class="space-y-5 rounded-[2rem] bg-slate-50 p-8 mb-10">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-black uppercase tracking-widest">Phone Number</span>
+                            <span class="text-slate-900 font-black tracking-tighter">
                                 {{ substr($pelanggan->no_telepon, 0, 4) . '****' . substr($pelanggan->no_telepon, -3) }}
                             </span>
                         </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="text-slate-500 font-medium">Bergabung Pada</span>
-                            <span class="text-slate-900 font-bold">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-black uppercase tracking-widest">Member Since</span>
+                            <span class="text-slate-900 font-black tracking-tighter">
                                 {{ \Carbon\Carbon::parse($pelanggan->tanggal_daftar)->format('d M Y') }}
                             </span>
                         </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="text-slate-500 font-medium">Total Transaksi</span>
-                            <span class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-blue-700">
-                                {{ $pelanggan->total_transaksi }}x
+                        <div class="flex items-center justify-between text-xs pt-4 border-t border-slate-200">
+                            <span class="text-slate-400 font-black uppercase tracking-widest">Orders</span>
+                            <span class="inline-flex items-center rounded-lg bg-indigo-100 px-3 py-1 text-[10px] font-black text-indigo-700">
+                                {{ $pelanggan->total_transaksi }} Transactions
                             </span>
                         </div>
                     </div>
                     
-                    <a href="{{ route('public.pelanggan.show', $pelanggan->kode_pelanggan) }}" class="mt-auto inline-flex items-center justify-center rounded-xl bg-slate-900 px-6 py-4 text-sm font-bold text-white shadow-xl shadow-slate-200 transition-all hover:bg-blue-600 hover:shadow-blue-200 active:scale-95 group/btn">
-                        Lihat Detail Cucian
-                        <i class="fas fa-chevron-right ml-2 text-[10px] transition-transform group-hover/btn:translate-x-1"></i>
+                    <a href="{{ route('public.pelanggan.show', $pelanggan->kode_pelanggan) }}" class="mt-auto inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-5 text-sm font-black uppercase tracking-widest text-white shadow-xl shadow-slate-200 transition-all duration-300 hover:bg-indigo-600 hover:shadow-indigo-200 active:scale-95 group/btn">
+                        Open History
+                        <i class="fas fa-chevron-right ml-4 text-[10px] transition-transform group-hover/btn:translate-x-2"></i>
                     </a>
                 </div>
                 @endforeach
             </div>
         @else
-            <div class="text-center py-20">
-                <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-red-50 text-red-400 mb-8 animate-bounce">
-                    <i class="fas fa-user-slash text-4xl"></i>
+            <div class="text-center py-32">
+                <div class="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-red-50 text-red-500 mb-10 animate-bounce">
+                    <i class="fas fa-user-slash text-5xl"></i>
                 </div>
-                <h3 class="text-2xl font-extrabold text-slate-900">Data Tidak Ditemukan</h3>
-                <p class="mt-4 text-slate-500 max-w-sm mx-auto">
-                    Maaf, kami tidak dapat menemukan pelanggan dengan data tersebut. Pastikan ejaan dan kode sudah benar.
+                <h3 class="text-3xl font-black text-slate-900 tracking-tight">Data Tidak Ditemukan</h3>
+                <p class="mt-6 text-slate-500 max-w-md mx-auto font-medium text-lg leading-relaxed">
+                    Maaf, sistem kami tidak dapat menemukan data pelanggan dengan input tersebut. Mohon pastikan kembali data Anda.
                 </p>
-                <a href="{{ route('public.pelanggan') }}" class="mt-8 inline-flex items-center font-bold text-blue-600 hover:text-blue-700 transition-colors">
-                    <i class="fas fa-undo mr-2 text-xs"></i>
+                <a href="{{ route('public.pelanggan') }}" class="mt-12 inline-flex items-center text-sm font-black uppercase tracking-widest text-indigo-600 hover:text-indigo-700 transition-colors">
+                    <i class="fas fa-undo mr-3"></i>
                     Reset Pencarian
                 </a>
             </div>
         @endif
     @else
-        <div class="text-center py-20">
-            <div class="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-blue-50 text-blue-100 mb-8">
-                <i class="fas fa-tshirt text-6xl"></i>
+        <div class="text-center py-32">
+            <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-slate-50 text-slate-100 mb-10">
+                <i class="fas fa-tshirt text-8xl"></i>
             </div>
-            <h3 class="text-xl font-bold text-slate-400">Silakan gunakan fitur pencarian di atas</h3>
-            <p class="mt-4 text-slate-400 max-w-xs mx-auto text-sm">
-                Informasi status cucian Anda akan ditampilkan di sini setelah Anda melakukan pencarian.
+            <h3 class="text-2xl font-black text-slate-300 tracking-widest uppercase">Input Search Criteria</h3>
+            <p class="mt-6 text-slate-400 max-w-sm mx-auto font-medium leading-relaxed">
+                Silakan masukkan data pencarian Anda di kolom atas untuk melacak status pesanan secara real-time.
             </p>
         </div>
     @endif
