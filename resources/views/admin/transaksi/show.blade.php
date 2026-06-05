@@ -123,39 +123,49 @@
     <div class="col-lg-4">
         <!-- Update Status -->
         <div class="info-card mb-4">
-            <h5 class="fw-black mb-4">Kelola Order</h5>
-            @if(in_array($transaksi->status, ['diambil', 'batal']))
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-black mb-0">Kelola Order</h5>
+                <div class="h-10 w-10 rounded-xl bg-slate-50 text-slate-400 flex align-items-center justify-content-center">
+                    <i class="fas fa-tasks text-sm"></i>
+                </div>
+            </div>
+
+            @php
+                $isBatal = $transaksi->status === 'batal';
+                $isDiambilLunas = ($transaksi->status === 'diambil' && $transaksi->bayar >= $transaksi->total);
+                $isFinal = $isBatal || $isDiambilLunas;
+            @endphp
+
+            @if($isFinal)
                 <div class="text-center py-4 bg-light rounded-4 border border-dashed">
                     <i class="fas fa-lock text-muted mb-2"></i>
-                    <p class="text-muted small fw-bold mb-0">Status telah final.</p>
+                    <p class="text-muted small fw-bold mb-0">Order ini telah {{ $isBatal ? 'dibatalkan' : 'selesai & lunas' }}.</p>
                 </div>
             @else
                 <form action="{{ route('admin.transaksi.status', $transaksi) }}" method="POST" class="mb-4">
                     @csrf @method('PATCH')
                     <div class="mb-3">
-                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest" style="font-size: 9px;">Update Status</label>
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest" style="font-size: 9px;">Update Progress</label>
                         <select name="status" class="form-select border-0 bg-light rounded-3 p-3 fw-bold small" required>
                             <option value="diterima" {{ $transaksi->status == 'diterima' ? 'selected' : '' }}>DITERIMA</option>
                             <option value="dicuci" {{ $transaksi->status == 'dicuci' ? 'selected' : '' }}>DICUCI</option>
                             <option value="dijemur" {{ $transaksi->status == 'dijemur' ? 'selected' : '' }}>DIJEMUR</option>
                             <option value="disetrika" {{ $transaksi->status == 'disetrika' ? 'selected' : '' }}>DISETRIKA</option>
                             <option value="siap" {{ $transaksi->status == 'siap' ? 'selected' : '' }}>SIAP DIAMBIL</option>
-                            <option value="diambil" {{ $transaksi->status == 'diambil' ? 'selected' : '' }}>DIAMBIL</option>
+                            <option value="diambil" {{ $transaksi->status == 'diambil' ? 'selected' : '' }}>SUDAH DIAMBIL</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 rounded-3 py-3 fw-black text-uppercase small shadow-sm">Update Progress</button>
+                    <button type="submit" class="btn btn-primary w-100 rounded-3 py-3 fw-black text-uppercase small shadow-sm">Simpan Status</button>
                 </form>
-                
-                @php
-                    $bolehBatal = ($transaksi->status !== 'batal') && (($transaksi->bayar < $transaksi->total) || !in_array($transaksi->status, ['siap', 'diambil']));
-                @endphp
 
-                @if($bolehBatal)
-                <form id="formBatal" action="{{ route('admin.transaksi.batal', $transaksi) }}" method="POST">
-                    @csrf @method('PATCH')
-                    <button type="button" class="btn btn-outline-danger w-100 rounded-3 py-2 fw-bold small border-opacity-25" onclick="confirmAction('formBatal', 'Batalkan Order?', 'Pesanan akan dibatalkan permanen.', 'Ya, Batalkan', 'warning')">Batalkan Order</button>
-                </form>
-                @endif
+                <div class="pt-4 border-top">
+                    <form id="formBatal" action="{{ route('admin.transaksi.batal', $transaksi) }}" method="POST">
+                        @csrf @method('PATCH')
+                        <button type="button" class="btn btn-outline-danger w-100 rounded-3 py-2 fw-bold small border-opacity-25" onclick="confirmAction('formBatal', 'Batalkan Order?', 'Pesanan akan dibatalkan secara sistem.', 'Ya, Batalkan', 'warning')">
+                            <i class="fas fa-ban me-2"></i> Batalkan Order
+                        </button>
+                    </form>
+                </div>
             @endif
         </div>
 
