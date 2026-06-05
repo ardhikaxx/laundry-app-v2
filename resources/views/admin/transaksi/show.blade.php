@@ -9,7 +9,7 @@
 @section('content')
 <style>
     .status-header { border-radius: 30px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .info-card { background: white; border-radius: 30px; border: 1px solid #e2e8f0; padding: 30px; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+    .info-card { background: white; border-radius: 30px; border: 1px solid #e2e8f0; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
     .status-step { position: relative; padding-left: 45px; margin-bottom: 35px; }
     .status-step::before { content: ''; position: absolute; left: 18px; top: 25px; bottom: -45px; width: 2px; background: #f1f5f9; }
     .status-step:last-child::before { display: none; }
