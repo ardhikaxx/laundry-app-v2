@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — SiLaundry</title>
+    <title>Login — Cuciin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
@@ -19,7 +19,7 @@
     <div class="login-card">
         <div class="brand">
             <i class="fas fa-soap"></i>
-            <h3>SiLaundry</h3>
+            <h3>Cuciin</h3>
             <p class="text-muted small">Silakan login untuk melanjutkan</p>
         </div>
         
