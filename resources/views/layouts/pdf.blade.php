@@ -25,19 +25,6 @@
         .header-left { display: table-cell; width: 60%; vertical-align: middle; }
         .header-right { display: table-cell; width: 40%; text-align: right; vertical-align: middle; }
         
-        .brand-logo { 
-            background-color: #4f46e5; /* indigo-600 */
-            color: #ffffff;
-            width: 35px;
-            height: 35px;
-            text-align: center;
-            line-height: 35px;
-            font-size: 20px;
-            font-weight: bold;
-            display: inline-block;
-            border-radius: 8px;
-            margin-right: 10px;
-        }
         .brand-name { 
             font-size: 24px; 
             font-weight: 900; 
@@ -154,9 +141,8 @@
 <body>
     <div class="header">
         <div class="header-left">
-            <div class="brand-logo">C</div>
             <h1 class="brand-name">Cuci<span>in</span></h1>
-            <p class="tagline">Premium Laundry Experience</p>
+            <p class="tagline">Layanan Laundry Modern</p>
         </div>
         <div class="header-right meta-info">
             <strong>Dicetak:</strong> {{ now()->format('d M Y, H:i') }}<br>
