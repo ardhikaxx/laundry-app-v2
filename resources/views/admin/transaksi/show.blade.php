@@ -175,10 +175,33 @@
                     @csrf @method('PATCH')
                     <div class="input-group mb-3">
                         <span class="input-group-text border-0 bg-light fw-black text-muted small">Rp</span>
-                        <input type="number" name="bayar" class="form-control border-0 bg-light p-3 fw-black" value="{{ $transaksi->total }}" min="{{ $transaksi->total }}" required>
+                        <input type="number" name="bayar" id="inputBayar" class="form-control border-0 bg-light p-3 fw-black" value="{{ $transaksi->total }}" min="{{ $transaksi->total }}" required>
+                    </div>
+                    <div id="kembalianInfo" class="alert alert-success border-0 rounded-4 text-center p-3 mb-4 d-none">
+                        <span class="fw-black small text-uppercase">Kembalian: Rp <span id="labelKembalian">0</span></span>
                     </div>
                     <button type="submit" class="btn btn-success w-100 rounded-3 py-3 fw-black text-uppercase small shadow-sm">Pelunasan</button>
                 </form>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const inputBayar = document.getElementById('inputBayar');
+                        const kembalianInfo = document.getElementById('kembalianInfo');
+                        const labelKembalian = document.getElementById('labelKembalian');
+                        const total = {{ $transaksi->total }};
+
+                        inputBayar.addEventListener('input', function() {
+                            const bayar = parseFloat(this.value) || 0;
+                            if (bayar > total) {
+                                const kembalian = bayar - total;
+                                labelKembalian.innerText = new Intl.NumberFormat('id-ID').format(kembalian);
+                                kembalianInfo.classList.remove('d-none');
+                            } else {
+                                kembalianInfo.classList.add('d-none');
+                            }
+                        });
+                    });
+                </script>
             @endif
         </div>
 
