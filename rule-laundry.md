@@ -9,7 +9,7 @@
 
 | Item | Detail |
 |---|---|
-| **Nama Sistem** | SiLaundry — Sistem Informasi Manajemen Laundry |
+| **Nama Sistem** | Cuciin — Sistem Informasi Manajemen Laundry |
 | **Versi** | 1.0.0 |
 | **Framework** | Laravel 12 |
 | **UI** | Bootstrap 5 (CDN) |
@@ -44,7 +44,7 @@ Semua library UI wajib menggunakan CDN. Tidak boleh menggunakan npm/vite untuk l
 ## 3. STRUKTUR DIREKTORI PROYEK
 
 ```
-silaundry/
+cuciin/
 ├── app/
 │   ├── Http/
 │   │   ├── Controllers/
@@ -888,7 +888,7 @@ function showToast(icon, title) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') — SiLaundry Admin</title>
+    <title>@yield('title', 'Dashboard') — Cuciin Admin</title>
 
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -1007,7 +1007,7 @@ function showToast(icon, title) {
 <nav id="sidebar">
     <div class="brand">
         <i class="fas fa-soap text-primary me-2 fs-5"></i>
-        <span>SiLaundry</span>
+        <span>Cuciin</span>
     </div>
     <div class="pt-2 pb-3">
         <p class="nav-section">Utama</p>
@@ -1159,7 +1159,7 @@ function showToast(icon, title) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Beranda') — SiLaundry</title>
+    <title>@yield('title', 'Beranda') — Cuciin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
@@ -1173,7 +1173,7 @@ function showToast(icon, title) {
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <i class="fas fa-soap me-2"></i>SiLaundry
+            <i class="fas fa-soap me-2"></i>Cuciin
         </a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navPublic">
             <span class="navbar-toggler-icon"></span>
@@ -1208,9 +1208,9 @@ function showToast(icon, title) {
 
 <footer class="bg-dark text-white py-4 mt-5">
     <div class="container text-center">
-        <p class="mb-1 fw-semibold"><i class="fas fa-soap me-2"></i>SiLaundry</p>
+        <p class="mb-1 fw-semibold"><i class="fas fa-soap me-2"></i>Cuciin</p>
         <p class="small text-secondary mb-0">Layanan laundry terpercaya</p>
-        <p class="small text-secondary mt-1">&copy; {{ date('Y') }} SiLaundry. All rights reserved.</p>
+        <p class="small text-secondary mt-1">&copy; {{ date('Y') }} Cuciin. All rights reserved.</p>
     </div>
 </footer>
 
@@ -1251,7 +1251,7 @@ function showToast(icon, title) {
 </head>
 <body>
     <div class="pdf-header">
-        <div class="toko-nama">SiLaundry</div>
+        <div class="toko-nama">Cuciin</div>
         <div class="toko-info">Dicetak: {{ now()->format('d/m/Y H:i') }}
             &nbsp;|&nbsp; Oleh: {{ auth()->user()->name ?? '-' }}</div>
     </div>
@@ -1517,13 +1517,13 @@ public function run(): void
 ```php
 User::create([
     'name'     => 'Administrator',
-    'email'    => 'admin@silaundry.com',
+    'email'    => 'admin@cuciin.com',
     'password' => Hash::make('password'),
     'role'     => 'admin',
 ]);
 User::create([
     'name'     => 'Pengunjung',
-    'email'    => 'umum@silaundry.com',
+    'email'    => 'umum@cuciin.com',
     'password' => Hash::make('password'),
     'role'     => 'umum',
 ]);
@@ -1576,7 +1576,7 @@ foreach ($kategori as $nama) {
 
 ```bash
 # 1. Buat project Laravel 12
-composer create-project laravel/laravel silaundry
+composer create-project laravel/laravel cuciin
 
 # 2. Install DomPDF
 composer require barryvdh/laravel-dompdf
@@ -1585,7 +1585,7 @@ composer require barryvdh/laravel-dompdf
 php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
 
 # 4. Konfigurasi .env
-DB_DATABASE=silaundry
+DB_DATABASE=cuciin
 DB_USERNAME=root
 DB_PASSWORD=
 
@@ -1602,8 +1602,8 @@ php artisan serve
 **Akun default setelah seeder:**
 | Email | Password | Role |
 |---|---|---|
-| `admin@silaundry.com` | `password` | Admin |
-| `umum@silaundry.com` | `password` | Umum |
+| `admin@cuciin.com` | `password` | Admin |
+| `umum@cuciin.com` | `password` | Umum |
 
 ---
 
@@ -1628,4 +1628,4 @@ php artisan serve
 
 ---
 
-*Dokumen ini adalah panduan teknis lengkap untuk membangun SiLaundry dengan Laravel 12. Setiap modul, tabel, validasi, dan konvensi telah didefinisikan agar pengembangan dapat dilakukan secara konsisten dan terstruktur.*
+*Dokumen ini adalah panduan teknis lengkap untuk membangun Cuciin dengan Laravel 12. Setiap modul, tabel, validasi, dan konvensi telah didefinisikan agar pengembangan dapat dilakukan secara konsisten dan terstruktur.*
