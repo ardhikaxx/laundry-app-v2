@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $judul ?? 'Laporan SiLaundry' }}</title>
+    <title>{{ $judul ?? 'Laporan Cuciin' }}</title>
     <style>
         @page { margin: 40px; }
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.5; }
@@ -62,7 +62,7 @@
 <body>
     <div class="pdf-header">
         <div class="header-left">
-            <h1 class="toko-nama">SiLaundry</h1>
+            <h1 class="toko-nama">Cuciin</h1>
             <p class="toko-tagline">Solusi Cerdas Pakaian Bersih, Wangi, dan Rapi</p>
         </div>
         <div class="header-right">
@@ -77,7 +77,7 @@
 
     <div class="pdf-footer">
         <div class="footer-left">
-            &copy; {{ date('Y') }} SiLaundry Management System. All rights reserved.
+            &copy; {{ date('Y') }} Cuciin Management System. All rights reserved.
         </div>
         <div class="footer-right">
             Halaman <span class="pagenum"></span>
