@@ -24,14 +24,39 @@
                         @error('nama_pegawai') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                     </div>
                     <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Jabatan</label>
+                        <input type="text" name="jabatan" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('jabatan') is-invalid @enderror" placeholder="Contoh: Kasir, Washer, dll." value="{{ old('jabatan') }}" required>
+                        @error('jabatan') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
                         <label class="form-label small fw-black text-muted text-uppercase spacing-widest">No. Telepon</label>
                         <input type="text" name="no_telepon" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('no_telepon') is-invalid @enderror" value="{{ old('no_telepon') }}" required>
                         @error('no_telepon') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Tanggal Masuk</label>
+                        <input type="date" name="tanggal_masuk" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('tanggal_masuk') is-invalid @enderror" value="{{ old('tanggal_masuk', date('Y-m-d')) }}" required>
+                        @error('tanggal_masuk') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Alamat Domisili</label>
                     <textarea name="alamat" rows="3" class="form-control border-0 bg-light rounded-3 p-3 fw-bold" required>{{ old('alamat') }}</textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Status</label>
+                    <div class="d-flex gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_active" id="egactive1" value="1" checked>
+                            <label class="form-check-label fw-bold small" for="egactive1">Aktif</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="is_active" id="egactive0" value="0">
+                            <label class="form-check-label fw-bold small" for="egactive0">Nonaktif</label>
+                        </div>
+                    </div>
                 </div>
                 
                 <hr class="my-5 opacity-10">
