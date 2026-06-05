@@ -6,258 +6,311 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard') — Cuciin Admin</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <!-- Font Awesome 6 -->
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
         :root {
-            --sidebar-bg:     #1a2332;
-            --sidebar-width:  260px;
-            --accent-primary: #0d6efd;
-            --topbar-height:  60px;
-            --text-sidebar:   #adb5bd;
-            --text-sidebar-active: #ffffff;
+            --primary-indigo: #4f46e5;
+            --dark-sidebar: #111827;
         }
-
-        body { background:#f4f6f9; font-family:'Segoe UI',sans-serif; }
-
+        body {
+            font-family: 'Instrument Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
         /* Sidebar */
         #sidebar {
-            width: var(--sidebar-width);
-            min-height: 100vh;
-            background: var(--sidebar-bg);
-            position: fixed; top:0; left:0;
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--dark-sidebar);
+            color: #94a3b8;
+            transition: all 0.3s;
             z-index: 1000;
-            transition: width .3s;
             overflow-y: auto;
         }
-        #sidebar .brand {
-            height: var(--topbar-height);
-            display:flex; align-items:center;
-            padding:0 1.2rem;
-            background: rgba(255,255,255,.05);
-            border-bottom: 1px solid rgba(255,255,255,.08);
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #1f2937;
         }
-        #sidebar .brand span { color:#fff; font-weight:700; font-size:1.1rem; letter-spacing:.5px; }
-        #sidebar .nav-link {
-            color: var(--text-sidebar);
-            padding:.55rem 1.2rem;
-            border-radius:6px;
-            margin:2px .6rem;
-            transition:all .2s;
-            font-size:.875rem;
+        .sidebar-brand {
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        #sidebar .nav-link:hover,
-        #sidebar .nav-link.active {
-            background: var(--accent-primary);
-            color: var(--text-sidebar-active);
+        .brand-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
         }
-        #sidebar .nav-link i { width:20px; text-align:center; margin-right:.5rem; }
-        #sidebar .nav-section {
-            font-size:.7rem; font-weight:700; text-transform:uppercase;
-            letter-spacing:1px; color:#6c757d; padding:1rem 1.8rem .3rem;
+        .nav-section-title {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-weight: 800;
+            color: #4b5563;
+            padding: 1.5rem 1.5rem 0.5rem;
         }
-
-        /* Topbar */
-        #topbar {
-            height: var(--topbar-height);
-            background:#fff;
-            border-bottom:1px solid #dee2e6;
-            position:fixed; top:0;
-            left: var(--sidebar-width); right:0;
-            z-index:999;
-            display:flex; align-items:center; padding:0 1.5rem;
-            justify-content:space-between;
-            box-shadow:0 1px 3px rgba(0,0,0,.06);
+        .sidebar-nav .nav-link {
+            padding: 0.75rem 1.5rem;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+        .sidebar-nav .nav-link:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.05);
+        }
+        .sidebar-nav .nav-link.active {
+            color: white;
+            background-color: var(--primary-indigo);
+            border-radius: 0 50px 50px 0;
+            margin-right: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+        .sidebar-nav .nav-link i {
+            width: 20px;
+            text-align: center;
         }
 
         /* Main Content */
         #main-content {
-            margin-left: var(--sidebar-width);
-            padding-top: calc(var(--topbar-height) + 1.5rem);
-            padding-left:1.5rem; padding-right:1.5rem; padding-bottom:2rem;
-            min-height:100vh;
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+        
+        /* Topbar */
+        .topbar {
+            height: 64px;
+            background-color: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .breadcrumb { margin-bottom: 0; font-weight: 700; font-size: 0.875rem; }
+        .breadcrumb-item a { color: #64748b; text-decoration: none; }
+        .breadcrumb-item.active { color: var(--primary-indigo); }
+        
+        /* Profile Dropdown */
+        .user-dropdown .btn {
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 6px 15px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+        }
+        .avatar {
+            width: 28px;
+            height: 28px;
+            background-color: #e0e7ff;
+            color: var(--primary-indigo);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 800;
         }
 
-        /* Cards */
-        .card { border:none; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,.07); }
-        .card-header { background:#fff; border-bottom:1px solid #f0f0f0; font-weight:600; }
-
-        /* KPI Card */
-        .kpi-card { border-radius:12px; border:none; }
-        .kpi-card .kpi-icon {
-            width:52px; height:52px; border-radius:10px;
-            display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+        /* Content Padding */
+        .content-body {
+            padding: 2rem;
         }
-
-        /* Status Badges */
-        .badge-diterima  { background:#6c757d; }
-        .badge-dicuci    { background:#0dcaf0; color:#000; }
-        .badge-dijemur   { background:#ffc107; color:#000; }
-        .badge-disetrika { background:#fd7e14; }
-        .badge-siap      { background:#198754; }
-        .badge-diambil   { background:#0d6efd; }
-        .badge-batal     { background:#dc3545; }
-
-        /* Table */
-        .table th { font-weight:600; font-size:.82rem; text-transform:uppercase;
-                    letter-spacing:.5px; color:#6c757d; white-space:nowrap; }
-        .table td { vertical-align:middle; font-size:.88rem; }
 
         /* Responsive */
-        @media (max-width:768px) {
-            #sidebar { width:0; overflow:hidden; }
-            #sidebar.show { width:var(--sidebar-width); }
-            #topbar { left:0; }
-            #main-content { margin-left:0; }
+        @media (max-width: 991.98px) {
+            #sidebar { left: -280px; }
+            #sidebar.active { left: 0; }
+            #main-content { margin-left: 0; }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+            .sidebar-overlay.active { display: block; }
         }
     </style>
-
     @stack('styles')
 </head>
 <body>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-<!-- Sidebar -->
-<nav id="sidebar">
-    <div class="brand">
-        <i class="fas fa-soap text-primary me-2 fs-5"></i>
-        <span>Cuciin</span>
-    </div>
-    <div class="pt-2 pb-3">
-        <p class="nav-section">Utama</p>
-        <a href="{{ route('admin.dashboard') }}"
-           class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <i class="fas fa-tachometer-alt"></i> Dashboard
-        </a>
-
-        <p class="nav-section">Master Data</p>
-        <a href="{{ route('admin.kategori.index') }}"
-           class="nav-link {{ request()->routeIs('admin.kategori.*') ? 'active' : '' }}">
-            <i class="fas fa-tags"></i> Kategori Layanan
-        </a>
-        <a href="{{ route('admin.layanan.index') }}"
-           class="nav-link {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
-            <i class="fas fa-tshirt"></i> Layanan
-        </a>
-        <a href="{{ route('admin.pelanggan.index') }}"
-           class="nav-link {{ request()->routeIs('admin.pelanggan.*') ? 'active' : '' }}">
-            <i class="fas fa-users"></i> Pelanggan
-        </a>
-
-        <p class="nav-section">Operasional</p>
-        <a href="{{ route('admin.transaksi.index') }}"
-           class="nav-link {{ request()->routeIs('admin.transaksi.*') ? 'active' : '' }}">
-            <i class="fas fa-receipt"></i> Transaksi
-        </a>
-        <a href="{{ route('admin.pegawai.index') }}"
-           class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">
-            <i class="fas fa-user-tie"></i> Pegawai
-        </a>
-
-        <p class="nav-section">Sistem</p>
-        <a href="{{ route('admin.laporan.index') }}"
-           class="nav-link {{ request()->routeIs('admin.laporan.*') ? 'active' : '' }}">
-            <i class="fas fa-chart-bar"></i> Laporan
-        </a>
-    </div>
-</nav>
-
-<!-- Topbar -->
-<header id="topbar">
-    <div class="d-flex align-items-center gap-3">
-        <button class="btn btn-sm btn-light d-md-none" id="sidebarToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav aria-label="breadcrumb" class="d-none d-md-block">
-            <ol class="breadcrumb mb-0 small">
-                @yield('breadcrumb')
-            </ol>
-        </nav>
-    </div>
-    <div class="d-flex align-items-center gap-2">
-        <div class="dropdown">
-            <button class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fas fa-user-circle me-1"></i>
-                {{ auth()->user()->name }}
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><span class="dropdown-item-text small text-muted">{{ auth()->user()->email }}</span></li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-danger">
-                            <i class="fas fa-sign-out-alt me-2"></i>Keluar
-                        </button>
-                    </form>
-                </li>
-            </ul>
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
+                <div class="brand-icon"><i class="fas fa-soap"></i></div>
+                <span>Cuciin Admin</span>
+            </a>
         </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Utama</div>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+
+            <div class="nav-section-title">Master Data</div>
+            <a href="{{ route('admin.kategori.index') }}" class="nav-link {{ request()->routeIs('admin.kategori.*') ? 'active' : '' }}">
+                <i class="fas fa-tags"></i> Kategori Layanan
+            </a>
+            <a href="{{ route('admin.layanan.index') }}" class="nav-link {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
+                <i class="fas fa-tshirt"></i> Layanan
+            </a>
+            <a href="{{ route('admin.pelanggan.index') }}" class="nav-link {{ request()->routeIs('admin.pelanggan.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i> Pelanggan
+            </a>
+
+            <div class="nav-section-title">Operasional</div>
+            <a href="{{ route('admin.transaksi.index') }}" class="nav-link {{ request()->routeIs('admin.transaksi.*') ? 'active' : '' }}">
+                <i class="fas fa-receipt"></i> Transaksi
+            </a>
+            <a href="{{ route('admin.pegawai.index') }}" class="nav-link {{ request()->routeIs('admin.pegawai.*') ? 'active' : '' }}">
+                <i class="fas fa-user-tie"></i> Pegawai
+            </a>
+
+            <div class="nav-section-title">Sistem</div>
+            <a href="{{ route('admin.laporan.index') }}" class="nav-link {{ request()->routeIs('admin.laporan.*') ? 'active' : '' }}">
+                <i class="fas fa-chart-bar"></i> Laporan
+            </a>
+            
+            <div class="mt-4 pt-4 border-top border-secondary opacity-25"></div>
+            <a href="{{ route('home') }}" class="nav-link">
+                <i class="fas fa-external-link-alt"></i> Halaman Publik
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="d-flex align-items-center">
+                <button class="btn border-0 d-lg-none me-3" id="sidebar-toggle">
+                    <i class="fas fa-bars fs-4"></i>
+                </button>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        @yield('breadcrumb')
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="user-dropdown dropdown">
+                <button class="btn dropdown-toggle shadow-none" type="button" data-bs-toggle="dropdown">
+                    <div class="avatar">{{ substr(auth()->user()->name, 0, 1) }}</div>
+                    <span class="d-none d-md-block">{{ auth()->user()->name }}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2 mt-2 rounded-4" style="width: 220px;">
+                    <li class="p-3 border-bottom mb-2">
+                        <div class="fw-bold small text-muted text-uppercase mb-1" style="font-size: 10px;">Signed in as</div>
+                        <div class="fw-bold text-dark truncate small">{{ auth()->user()->email }}</div>
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger fw-bold py-2 rounded-3 d-flex align-items-center gap-2">
+                                <i class="fas fa-sign-out-alt w-20px text-center"></i> Keluar Aplikasi
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="content-body">
+            @yield('content')
+        </main>
     </div>
-</header>
 
-<!-- Main Content -->
-<main id="main-content">
-    @yield('content')
-</main>
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Sidebar Toggle for Mobile
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const toggle = document.getElementById('sidebar-toggle');
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        if(toggle) {
+            toggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+        }
+        if(overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
 
-<script>
-    // Sidebar toggle (mobile)
-    document.getElementById('sidebarToggle')?.addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('show');
-    });
+        // Global SweetAlert Helpers
+        window.confirmDelete = (formId, nama = 'data ini') => {
+            Swal.fire({
+                title: 'Hapus Data?',
+                html: `Anda akan menghapus <strong>${nama}</strong>. Tindakan ini tidak dapat dibatalkan.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4f46e5',
+                cancelButtonColor: '#94a3b8',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                customClass: { popup: 'rounded-4' }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        };
 
-    // SweetAlert Flash Messages
-    @if(session('success'))
-    Swal.fire({ icon:'success', title:'Berhasil!', text:'{{ session('success') }}',
-        timer:2500, showConfirmButton:false, timerProgressBar:true });
-    @endif
-    @if(session('error'))
-    Swal.fire({ icon:'error', title:'Gagal!', text:'{{ session('error') }}',
-        confirmButtonColor:'#d33' });
-    @endif
-    @if(session('warning'))
-    Swal.fire({ icon:'warning', title:'Perhatian!', text:'{{ session('warning') }}' });
-    @endif
-
-    // Global Helper Functions
-    function confirmDelete(formId, nama = 'data ini') {
-        Swal.fire({
-            title: 'Hapus Data?',
-            html: `Anda akan menghapus <strong>${nama}</strong>. Tindakan ini tidak dapat dibatalkan.`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#dc3545',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: '<i class="fas fa-trash-alt me-1"></i>Ya, Hapus!',
-            cancelButtonText: 'Batal'
-        }).then(r => { if(r.isConfirmed) document.getElementById(formId).submit(); });
-    }
-
-    function confirmAction(formId, title, text, confirmText = 'Ya, Lanjutkan', icon = 'question') {
-        Swal.fire({
-            title, text, icon,
-            showCancelButton: true,
-            confirmButtonColor: '#0d6efd',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: confirmText,
-            cancelButtonText: 'Batal'
-        }).then(r => { if(r.isConfirmed) document.getElementById(formId).submit(); });
-    }
-
-    function showToast(icon, title) {
-        Swal.mixin({ toast:true, position:'top-end', showConfirmButton:false,
-            timer:3000, timerProgressBar:true }).fire({ icon, title });
-    }
-</script>
-
-@stack('scripts')
+        // Flash Messages
+        @if(session('success'))
+            Swal.fire({ icon: 'success', title: 'Berhasil!', text: "{{ session('success') }}", timer: 3000, showConfirmButton: false, customClass: { popup: 'rounded-4' } });
+        @endif
+        @if(session('error'))
+            Swal.fire({ icon: 'error', title: 'Gagal!', text: "{{ session('error') }}", confirmButtonColor: '#4f46e5', customClass: { popup: 'rounded-4' } });
+        @endif
+    </script>
+    @stack('scripts')
 </body>
 </html>
