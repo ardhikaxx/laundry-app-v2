@@ -46,6 +46,26 @@
                     <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Alamat Lengkap</label>
                     <textarea name="alamat" rows="3" class="form-control border-0 bg-light rounded-3 p-3 fw-bold" required>{{ old('alamat') }}</textarea>
                 </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Tanggal Daftar</label>
+                        <input type="date" name="tanggal_daftar" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('tanggal_daftar') is-invalid @enderror" value="{{ old('tanggal_daftar', date('Y-m-d')) }}" required>
+                        @error('tanggal_daftar') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Status</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_active" id="pactive1" value="1" checked>
+                                <label class="form-check-label fw-bold small" for="pactive1">Aktif</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="is_active" id="pactive0" value="0">
+                                <label class="form-check-label fw-bold small" for="pactive0">Nonaktif</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end gap-2">
                     <a href="{{ route('admin.pelanggan.index') }}" class="btn btn-light rounded-3 px-4 fw-bold small text-uppercase">Batal</a>
                     <button type="submit" class="btn btn-primary rounded-3 px-4 fw-black small text-uppercase shadow-sm">Daftarkan</button>
