@@ -164,8 +164,16 @@ class TransaksiController extends Controller
 
     public function batal(Transaksi $transaksi)
     {
-        if (in_array($transaksi->status, ['siap', 'diambil', 'batal'])) {
-            return redirect()->back()->with('warning', 'Transaksi tidak dapat dibatalkan pada status ini.');
+        // Jika sudah batal, tidak bisa batal lagi
+        if ($transaksi->status === 'batal') {
+            return redirect()->back()->with('warning', 'Transaksi sudah dalam status batal.');
+        }
+
+        // Boleh batal jika: Belum lunas ATAU belum masuk status final (siap/diambil)
+        $bolehBatal = ($transaksi->bayar < $transaksi->total) || !in_array($transaksi->status, ['siap', 'diambil']);
+
+        if (!$bolehBatal) {
+            return redirect()->back()->with('warning', 'Transaksi yang sudah lunas dan siap/diambil tidak dapat dibatalkan.');
         }
 
         try {

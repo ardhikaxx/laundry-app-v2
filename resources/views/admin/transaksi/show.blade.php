@@ -146,7 +146,11 @@
                     <button type="submit" class="btn btn-primary w-100 rounded-3 py-3 fw-black text-uppercase small shadow-sm">Update Progress</button>
                 </form>
                 
-                @if(!in_array($transaksi->status, ['siap', 'diambil', 'batal']))
+                @php
+                    $bolehBatal = ($transaksi->status !== 'batal') && (($transaksi->bayar < $transaksi->total) || !in_array($transaksi->status, ['siap', 'diambil']));
+                @endphp
+
+                @if($bolehBatal)
                 <form id="formBatal" action="{{ route('admin.transaksi.batal', $transaksi) }}" method="POST">
                     @csrf @method('PATCH')
                     <button type="button" class="btn btn-outline-danger w-100 rounded-3 py-2 fw-bold small border-opacity-25" onclick="confirmAction('formBatal', 'Batalkan Order?', 'Pesanan akan dibatalkan permanen.', 'Ya, Batalkan', 'warning')">Batalkan Order</button>
