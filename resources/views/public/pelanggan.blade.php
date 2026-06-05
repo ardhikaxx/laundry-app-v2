@@ -24,11 +24,11 @@
         margin: 40px auto 0;
     }
     .search-input {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
+        background: white;
+        border: 1px solid #e2e8f0;
         border-radius: 20px;
         padding: 20px 30px;
-        color: white;
+        color: #0f172a;
         font-size: 1.1rem;
         font-weight: 600;
     }
