@@ -37,7 +37,7 @@
         }
         .brand-name span { 
             color: #4f46e5; 
-            vertical-align: baseline;
+            vertical-align: 1px;
         }
         .tagline { font-size: 9px; color: #64748b; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
         
