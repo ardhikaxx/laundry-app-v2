@@ -30,11 +30,15 @@
             font-weight: 900; 
             color: #0f172a; /* slate-900 */
             margin: 0; 
-            letter-spacing: -1px;
+            padding: 0;
+            line-height: 1.2;
             display: inline-block;
             vertical-align: middle;
         }
-        .brand-name span { color: #4f46e5; }
+        .brand-name span { 
+            color: #4f46e5; 
+            vertical-align: baseline;
+        }
         .tagline { font-size: 9px; color: #64748b; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
         
         .meta-info { font-size: 9px; color: #94a3b8; }
