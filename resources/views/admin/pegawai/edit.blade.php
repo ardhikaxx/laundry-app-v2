@@ -24,9 +24,21 @@
                         @error('nama_pegawai') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                     </div>
                     <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Jabatan</label>
+                        <input type="text" name="jabatan" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('jabatan') is-invalid @enderror" value="{{ old('jabatan', $pegawai->jabatan) }}" required>
+                        @error('jabatan') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
                         <label class="form-label small fw-black text-muted text-uppercase spacing-widest">No. Telepon</label>
                         <input type="text" name="no_telepon" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('no_telepon') is-invalid @enderror" value="{{ old('no_telepon', $pegawai->no_telepon) }}" required>
                         @error('no_telepon') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Tanggal Masuk</label>
+                        <input type="date" name="tanggal_masuk" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('tanggal_masuk') is-invalid @enderror" value="{{ old('tanggal_masuk', $pegawai->tanggal_masuk) }}" required>
+                        @error('tanggal_masuk') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
                     </div>
                 </div>
                 <div class="mb-4">
