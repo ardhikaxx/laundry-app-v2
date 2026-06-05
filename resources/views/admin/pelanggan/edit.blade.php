@@ -47,6 +47,11 @@
                     <textarea name="alamat" rows="3" class="form-control border-0 bg-light rounded-3 p-3 fw-bold" required>{{ old('alamat', $pelanggan->alamat) }}</textarea>
                 </div>
                 <div class="mb-4">
+                    <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Tanggal Daftar</label>
+                    <input type="date" name="tanggal_daftar" class="form-control border-0 bg-light rounded-3 p-3 fw-bold @error('tanggal_daftar') is-invalid @enderror" value="{{ old('tanggal_daftar', $pelanggan->tanggal_daftar) }}" required>
+                    @error('tanggal_daftar') <div class="invalid-feedback fw-bold">{{ $message }}</div> @enderror
+                </div>
+                <div class="mb-4">
                     <label class="form-label small fw-black text-muted text-uppercase spacing-widest">Status Akun</label>
                     <div class="d-flex gap-3">
                         <div class="form-check">
